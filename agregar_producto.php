@@ -1,72 +1,55 @@
 <?php
-// Incluir funciones
 require_once 'backend.php';
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agregar Producto</title>
-    <!-- Tu compañero puede agregar aquí los estilos CSS -->
-    <style>
-        /* Estilos básicos temporales */
-        body { font-family: Arial; margin: 20px; }
-        .form-group { margin-bottom: 15px; }
-        label { display: block; font-weight: bold; }
-        input, textarea, select { width: 100%; padding: 8px; }
-        .btn { background: #4CAF50; color: white; padding: 10px; border: none; cursor: pointer; }
-        .error { color: red; font-size: 0.9em; }
-    </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
-    <h1>Agregar Nuevo Producto</h1>
+<body class="bg-light">
+<div class="container mt-4">
+    <h2 class="text-center mb-4">Agregar Nuevo Producto</h2>
     
-    <!-- Enlace para volver al listado -->
-    <p><a href="index.php">← Ver listado de productos</a></p>
-    
-    <!-- Formulario -->
-    <form action="procesar_agregar.php" method="POST">
-        <div class="form-group">
-            <label>ID del Producto:</label>
-            <input type="number" name="id" required min="1">
-            <small>Debe ser un número único y positivo</small>
+    <div class="card">
+        <div class="card-header bg-primary text-white">
+            Formulario de registro
         </div>
-        
-        <div class="form-group">
-            <label>Nombre del Producto:</label>
-            <input type="text" name="nombre" required minlength="3">
+        <div class="card-body">
+            <form method="POST" action="procesar_agregar.php">
+                <div class="row">
+                    <div class="col-md-2 mb-3">
+                        <input type="number" name="id" class="form-control" placeholder="ID" required min="1">
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <input type="text" name="nombre" class="form-control" placeholder="Nombre" required minlength="3">
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <input type="text" name="descripcion" class="form-control" placeholder="Descripción" required minlength="5">
+                    </div>
+                    <div class="col-md-2 mb-3">
+                        <input type="number" name="precio" class="form-control" placeholder="Precio" required min="0.01" step="0.01">
+                    </div>
+                    <div class="col-md-2 mb-3">
+                        <input type="number" name="stock" class="form-control" placeholder="Stock" required min="0">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <input type="text" name="categoria" class="form-control" placeholder="Categoría" required>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <button type="submit" class="btn btn-success w-100">Guardar producto</button>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <a href="index.php" class="btn btn-secondary w-100">Cancelar</a>
+                    </div>
+                </div>
+            </form>
         </div>
-        
-        <div class="form-group">
-            <label>Descripción:</label>
-            <textarea name="descripcion" required rows="3" minlength="5"></textarea>
-        </div>
-        
-        <div class="form-group">
-            <label>Precio ($):</label>
-            <input type="number" name="precio" required min="0.01" step="0.01">
-        </div>
-        
-        <div class="form-group">
-            <label>Stock:</label>
-            <input type="number" name="stock" required min="0" step="1">
-        </div>
-        
-        <div class="form-group">
-            <label>Categoría:</label>
-            <select name="categoria" required>
-                <option value="">Seleccione una categoría</option>
-                <option value="Electrónica">Electrónica</option>
-                <option value="Ropa">Ropa</option>
-                <option value="Hogar">Hogar</option>
-                <option value="Deportes">Deportes</option>
-                <option value="Juguetes">Juguetes</option>
-                <option value="Otros">Otros</option>
-            </select>
-        </div>
-        
-        <button type="submit" class="btn">Guardar Producto</button>
-    </form>
+    </div>
+</div>
 </body>
 </html>
